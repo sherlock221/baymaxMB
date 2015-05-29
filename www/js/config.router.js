@@ -25,7 +25,7 @@ Baymax.config(
               .state('app.auth.login', {
                   url: '/login',
                   views: {
-                      "app@": {
+                      "@": {
                           templateUrl: 'tpl/auth/login.html?v='+VERSION.vs,
                           controller : "LoginCtrl"
                       }
