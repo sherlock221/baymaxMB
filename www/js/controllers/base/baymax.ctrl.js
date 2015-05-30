@@ -1,125 +1,142 @@
 
 
-Baymax.controller('BaymaxCtrl', function($scope,$rootScope,$mdToast,$mdDialog,$timeout,AudioNotify,DB,Util,UserSev,SERVER) {
+Baymax.controller('BaymaxCtrl', function($scope,$rootScope,$q,$ionicModal,toastr,toastrConfig,$ionicPopup,$timeout,Util,SERVER) {
         //console.log("欢迎来到baymax");
 
          //测试url
-        SERVER.url = SERVER.test;
-
-
-    $rootScope.dialog = function(ev,title,content,btnText,callBack) {
-        var btnText = btnText || "确定";
-        var ev = ev || "";
-
-        var at = $mdDialog.alert({
-            title: content,
-            content: content,
-            ok: btnText
-        });
-        $mdDialog.show(at).finally(function() {
-            at = undefined;
-            callBack();
-        });
+    SERVER.url = SERVER.test;
 
 
 
+
+
+    //模态窗口
+    $rootScope.modal = function(url,scope,animate){
+        var defer = $q.defer();
+        $ionicModal.fromTemplateUrl(url,{
+            scope: scope,
+            animation: animate || 'slide-in-up'
+        })
+            .then(function(modal) {
+                modal.show();
+                defer.resolve(modal);
+            });
+
+        return defer.promise;
+    }
+
+    $scope.openModal = function(modal) {
+        modal.show();
+    };
+    $scope.closeModal = function(modal) {
+        modal.hide();
     };
 
 
-        //显示notify列表
-        $rootScope.showNotifyList = function(ev) {
-            $mdDialog.show({
-                controller: "NotifyListCtrl",
-                templateUrl: 'tpl/notify/notify-list.html',
-                targetEvent: ev
-            })
-                .then(function(answer) {
-                    $scope.alert = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.alert = 'You cancelled the dialog.';
-                });
-        };
+    //测试
+    //$rootScope.modal("tpl/user/setting.html",$scope)
+    //    .then(function(modal){
+    //            console.log(modal);
+    //    });
 
-        //提示信息
-        var  toastPosition = {
-            bottom: false,
-            top: true,
-            left: false,
-            right: true
-        };
 
-        var  getToastPosition = function() {
-            return Object.keys(toastPosition)
-                .filter(function(pos) { return toastPosition[pos]; })
-                .join(' ');
-        };
 
-        //提示信息
-        $rootScope.toast = function(content,delay) {
-            delay  = delay || 2000;
-            $mdToast.show(
-                $mdToast.simple()
-                    .content(content)
-                    .position(getToastPosition())
-                    .hideDelay(delay)
-            );
-        };
 
     $rootScope.setUser = function(key,user){
         Util.setLgObj(key,user);
         $rootScope.user = user;
     }
-
     $rootScope.getUser = function(){
         return Util.getLgObj("user");
     }
 
+
+
+
+    //toast
+    toastrConfig.positionClass = "toast-bottom-center";
+    toastrConfig.maxOpened = 1;
+
+    $rootScope.toastSuccess = function(content,timeOut){
+        toastr.success(content,{
+            timeOut : timeOut || 2500,
+            positionClass: 'toast-bottom-center'
+        });
+    }
+    $rootScope.toastError = function(content,timeOut){
+        toastr.error(content,{
+            timeOut : timeOut || 2500,
+            positionClass: 'toast-bottom-center'
+        });
+    }
+    $rootScope.toastInfo = function(content,timeOut){
+        toastr.info(content,{
+            timeOut : timeOut || 2500,
+            positionClass: 'toast-bottom-center'
+        });
+    }
+
+
+
+    //pop
+    var alertPop = function(title,content){
+        var alertPopup = $ionicPopup.alert({
+            title: title,
+            template: content
+        });
+    }
+
     $rootScope.alertError = function(content,title){
-        $rootScope.toast(content);
+        alertPop(title || "错误",content);
     }
 
     $rootScope.alertSuccess = function(content,title){
-        $rootScope.toast(content);
+        alertPop(title || "完成",content);
     }
 
     $rootScope.alertInfo = function(content,title){
-        $rootScope.toast(content);
+        alertPop(title || "提示",content);
     }
 
     //显示confirm
-    $rootScope.confirm = function(ev,title,content,ok,cancel) {
-
-        ok = ok || "确定";
-        cancel = cancel || "取消";
-
-        var confirm = $mdDialog.confirm()
-            .title(title)
-            .content(content)
-            .ok(ok)
-            .cancel(cancel)
-            .targetEvent(ev);
-        return $mdDialog.show(confirm);
+    $rootScope.confirm = function(title,content,ok,cancel) {
+        return $ionicPopup.confirm({
+            title: title,
+            template: content,
+            cancelText : cancel || "取消",
+            okText  :  ok || "确定"
+        });
     };
 
-
-
-    //通知部分使用html5
-    $rootScope.notify = function(title,body,icon){
-        var notification = new AudioNotify(title,{
-            body: body,
-            icon: icon,
-            soundFile : "audio/msn.mp3"
+    //prompt
+    $rootScope.prompt = function(title,content,inputType,placeholder){
+        return $ionicPopup.prompt({
+            title: 'title',
+            template: content,
+            inputType: inputType || "text",
+            inputPlaceholder: placeholder
         });
-
-        ////2秒关闭
-        $timeout(function(){
-            notification.close();
-        },2000);
     }
 
 
 
-    //初始化数据库
+    //
+    //
+    //
+    ////通知部分使用html5
+    //$rootScope.notify = function(title,body,icon){
+    //    var notification = new AudioNotify(title,{
+    //        body: body,
+    //        icon: icon,
+    //        soundFile : "audio/msn.mp3"
+    //    });
+    //
+    //    ////2秒关闭
+    //    $timeout(function(){
+    //        notification.close();
+    //    },2000);
+    //}
+
 
 
 

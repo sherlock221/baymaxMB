@@ -20,7 +20,6 @@ Baymax.service('SignSev', function($http,$q,SERVER) {
                     defer.resolve(result);
                 })
                 .error(function(err){
-
                     defer.reject(err);
                 });
 

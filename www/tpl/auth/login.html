@@ -1,28 +1,29 @@
-<ion-view   view-title="登录">
 
+<ion-view   view-title="登录">
     <ion-content class="has-header login-layer">
 
 
+        <form  role="form"   name="loginForm"  novalidate ng-submit="login();">
+            <div class="list ">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">登录名称</span>
+                    <input type="text" placeholder="登录名称" name="userName" ng-model="fm.userName"  required/>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">密&emsp;码</span>
+                    <input type="password" placeholder="密&emsp;码"  name="passWord" ng-model="fm.passWord" required/>
+                </label>
 
-        <div class="list ">
-            <label class="item item-input item-floating-label">
-                <span class="input-label">登录名称</span>
-                <input type="text" placeholder="登录名称">
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">密&emsp;码</span>
-                <input type="password" placeholder="密&emsp;码">
-            </label>
 
 
+            </div>
 
-        </div>
-
-        <div class="login-bottom">
-            <button class="button  button-block   button-positive">
-                登录
-            </button>
-        </div>
+            <div class="login-bottom">
+                <button type="submit" class="button  button-block   button-positive"  ng-disabled="loginForm.$invalid || isSubmit ">
+                    登录
+                </button>
+            </div>
+        </form>
 
 
     </ion-content>

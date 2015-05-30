@@ -71,6 +71,21 @@ Baymax.constant("CacheCons",{
 });
 
 
+//ionic 平台设定
+Baymax.config(function ($ionicConfigProvider) {
+    //android 平台下开启原生滚动模式  ionic1.0rc 版特性
+//    if(!ionic.Platform.isIOS())$ionicConfigProvider.scrolling.jsScrolling(false);
+    //默认策略是 back策略
+    //极限缓存策略
+//    $ionicConfigProvider.views.forwardCache(true);
+    //android 关闭动画
+    //if(ionic.Platform.isAndroid()){
+    //    $ionicConfigProvider.views.transition('none');
+    //}
+
+
+
+})
 
 
 

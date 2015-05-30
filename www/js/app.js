@@ -8,6 +8,7 @@ var Baymax = angular.module('baymax', [
   'ionic',
   'focusOn',
   'angular-websql',
-  'ngFileUpload'
+  'ngFileUpload',
+  'toastr'
 ]);
 

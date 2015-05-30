@@ -6,6 +6,7 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/angular/toast/angular-toastr.min.css" rel="stylesheet">
     <link href="css/all.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then remove the CSS include above
@@ -19,6 +20,10 @@
     <script type="text/javascript" src="lib/angular/angular-websql.js"></script>
     <script type="text/javascript"  src="lib/angular/ng-file-upload-all.min.js" ></script>
     <script type="text/javascript" src="lib/focus/ng-focus-on.js"></script>
+
+
+    <script type="text/javascript" src="lib/angular/toast/angular-toastr.tpls.min.js"></script>
+
 
 
     <!-- your app's js -->
@@ -37,6 +42,7 @@
 
 
     <!-- ctrl -->
+    <script type="text/javascript" src="js/controllers/base/baymax.ctrl.js"></script>
     <script type="text/javascript" src="js/controllers/auth/sign.ctrl.js"></script>
 
 
@@ -47,7 +53,7 @@
 
   </head>
 
-  <body ng-app="baymax">
+  <body ng-app="baymax" ng-controller="BaymaxCtrl">
 
   <ion-nav-bar class="bar-positive nav-title-slide-ios7">
     <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
@@ -56,5 +62,8 @@
   </ion-nav-bar>
 
       <ion-nav-view></ion-nav-view>
+
+
+
   </body>
 </html>

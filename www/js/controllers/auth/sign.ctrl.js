@@ -5,7 +5,6 @@
 
 Baymax.controller('LoginCtrl', function($scope,$q,$rootScope,$state,Util,SignSev) {
 
-
     $scope.fm = {
         userName : "",
         passWord : "",
@@ -13,10 +12,13 @@ Baymax.controller('LoginCtrl', function($scope,$q,$rootScope,$state,Util,SignSev
         typeName : "cs"
     }
 
+    $scope.isSubmit = false;
 
 
     $scope.login = function(){
         var access_token;
+
+        $scope.isSubmit = true;
 
         SignSev.login($scope.fm.userName,$scope.fm.passWord,$scope.fm.typeName)
             //login
@@ -30,13 +32,13 @@ Baymax.controller('LoginCtrl', function($scope,$q,$rootScope,$state,Util,SignSev
             .then(function(res) {
                 //存储本次用户
                 res.access_token = access_token;
-
                 $rootScope.setUser("user",res);
+                $scope.isSubmit = false;
 
-                //$state.go("app.main.tab.chat");
+                $state.go("app.tab.chat");
 
             },function(err) {
-                $rootScope.alertError(err);
+                $scope.isSubmit = false;
             });
     }
 });
