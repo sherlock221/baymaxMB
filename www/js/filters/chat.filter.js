@@ -11,7 +11,6 @@ Baymax.filter("userHead", function() {
     return fun;
 });
 
-
 Baymax.filter('trustHtml', function ($sce) {
 
     return function (input) {

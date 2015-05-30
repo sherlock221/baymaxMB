@@ -20,6 +20,7 @@
     <script type="text/javascript" src="lib/angular/angular-websql.js"></script>
     <script type="text/javascript"  src="lib/angular/ng-file-upload-all.min.js" ></script>
     <script type="text/javascript" src="lib/focus/ng-focus-on.js"></script>
+    <script type="text/javascript" src="lib/websocket/reconnecting-websocket.min.js"></script>
 
 
     <script type="text/javascript" src="lib/angular/toast/angular-toastr.tpls.min.js"></script>
@@ -36,19 +37,26 @@
     <script type="text/javascript" src="js/services/interceptors/ajaxInterceptors.js"></script>
 
 
+    <!-- dir -->
+    <script type="text/javascript" src="js/filters/chat.filter.js"></script>
+
     <!-- 服务 -->
     <script type="text/javascript" src="js/services/common/util.sev.js"></script>
     <script type="text/javascript" src="js/services/auth/sign.sev.js"></script>
+    <script type="text/javascript" src="js/services/user/user.sev.js"></script>
 
 
     <!-- ctrl -->
     <script type="text/javascript" src="js/controllers/base/baymax.ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/base/main.ctrl.js"></script>
     <script type="text/javascript" src="js/controllers/auth/sign.ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/notify/notify-list.ctrl.js"></script>
+    <script type="text/javascript" src="js/controllers/tab/detail.ctrl..js"></script>
+    <script type="text/javascript" src="js/controllers/tab/chat.ctrl.js"></script>
 
 
     <!-- cordova script (this will be a 404 during development) -->
     <!--<script src="cordova.js"></script>-->
-
 
 
   </head>
@@ -61,7 +69,7 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-      <ion-nav-view></ion-nav-view>
+      <ion-nav-view ></ion-nav-view>
 
 
 

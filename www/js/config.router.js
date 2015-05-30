@@ -18,47 +18,71 @@ Baymax.config(
 
               .state('app.auth', {
                   url: '/auth',
-                  abstract : true
+                  abstract :  true
                })
 
               //登录
               .state('app.auth.login', {
                   url: '/login',
-                  views: {
-                      "@": {
+                  views : {
+                      "@app" : {
                           templateUrl: 'tpl/auth/login.html?v='+VERSION.vs,
                           controller : "LoginCtrl"
                       }
                   }
+
               })
+
 
               //tab
               .state("app.tab",{
                   url: '/tab',
-                  templateUrl: 'tpl/tab/tab.html?v='+VERSION.vs
+                  templateUrl: 'tpl/tab/tab.html?v='+VERSION.vs,
+                  controller : 'MainCtrl'
               })
 
+              //通知
+              .state("app.tab.notify",{
+                  url: '/notify',
+                  views : {
+                      "notify@app.tab" : {
+                          templateUrl: 'tpl/notify/notify.html?v='+VERSION.vs
+                      }
+                  }
+              })
 
               //聊天
               .state("app.tab.chat",{
                   url: '/chat',
                   views : {
                       "chat@app.tab" : {
-                            templateUrl: 'tpl/chat/chat.html?v='+VERSION.vs
+                          templateUrl: 'tpl/chat/chat.html?v='+VERSION.vs
                       }
                   }
               })
-              //联系人
-              .state("app.tab.contact",{
-                  url: '/contact',
+
+              //详情
+              //.state("app.tab.detail",{
+              //    url: '/detail',
+              //    views : {
+              //        "chat@app.tab" : {
+              //            templateUrl: 'tpl/chat/detail.html?v='+VERSION.vs,
+              //            controller : "ChatDetailCtrl"
+              //        }
+              //    }
+              //
+              //})
+
+              .state("app.detail",{
+                  url: '/detail',
                   views : {
-                      "contact@app.tab" : {
-                          templateUrl: 'tpl/contact/contact.html?v='+VERSION.vs
+                      "@app" : {
+                          templateUrl: 'tpl/chat/detail.html?v='+VERSION.vs,
+                          controller : "ChatDetailCtrl"
                       }
                   }
-
-
               })
+
 
               //我
               .state("app.tab.user",{

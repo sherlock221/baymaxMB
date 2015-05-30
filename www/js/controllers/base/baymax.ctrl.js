@@ -1,12 +1,25 @@
 
 
-Baymax.controller('BaymaxCtrl', function($scope,$rootScope,$q,$ionicModal,toastr,toastrConfig,$ionicPopup,$timeout,Util,SERVER) {
+Baymax.controller('BaymaxCtrl', function($scope,$rootScope,$q,$state,$ionicModal,$ionicLoading,toastr,toastrConfig,$ionicPopup,$timeout,Util,SERVER) {
         //console.log("欢迎来到baymax");
 
          //测试url
     SERVER.url = SERVER.test;
 
 
+
+    //loading
+    $rootScope.loading = function(isLoading){
+        if(isLoading){
+            $ionicLoading.show({
+                //40秒超时时间
+                duration : 1000 * 40
+            });
+        }
+        else{
+            $ionicLoading.hide();
+        }
+    }
 
 
 
@@ -118,6 +131,10 @@ Baymax.controller('BaymaxCtrl', function($scope,$rootScope,$q,$ionicModal,toastr
         });
     }
 
+
+    $rootScope.go = function(state){
+        $state.go(state);
+    }
 
 
     //

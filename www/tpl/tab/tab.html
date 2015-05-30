@@ -1,19 +1,18 @@
 
 
-<ion-tabs class="tabs-positive tabs-icon-only">
+<ion-tabs class="tabs-positive  tabs-icon-only"  ng-class="{'tabs-item-hide': $root.hiddenTabs}" >
 
-    <ion-tab  href="#/app/tab/chat" title="chat" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <ion-tab  href="#/app/tab/notify" title="通知"   badge-style="badge-assertive" badge="10" icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline">
+        <ion-nav-view name="notify"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab  href="#/app/tab/chat" title="聊天" badge="99" icon-on="ion-ios-chatbubble" icon-off="ion-ios-chatbubble-outline">
         <ion-nav-view name="chat"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab  href="#/app/tab/contact" title="contact" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-        <ion-nav-view name="contact"></ion-nav-view>
-    </ion-tab>
-
-    <ion-tab  href="#/app/tab/user" title="user" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+    <ion-tab  href="#/app/tab/user" title="我" icon-on="ion-social-reddit" icon-off="ion-social-reddit-outline">
         <ion-nav-view name="user"></ion-nav-view>
     </ion-tab>
-
 
 
 </ion-tabs>
